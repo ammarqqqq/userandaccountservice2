@@ -134,7 +134,7 @@ backofficerouter.get('/deleteall', function (req, res) {
     Useridentification.remove({}, (err) => {
       //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
         //userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
-          userandaccountredis = redisClient(6379, 'userandaccountredis');
+          userandaccountredis = redisClient(6378, 'userandaccountredis');
         userandaccountredis.flushdb( function (err, succeeded) {
             console.log(succeeded); // will be true if successfull
             return res.json({success: true});
@@ -162,7 +162,7 @@ backofficerouter.post("/deleteuser/:userid", function(req, res) {
           //userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
           userandaccountredis.del(redisprefixes.user + result._id, function (err, succeeded) {
           userandaccountredis.del(redisprefixes.token + result._id, function (err, succeeded) {
-              var tokenredis = redisClient(6379, 'userandaccountredis');
+              var tokenredis = redisClient(6378, 'userandaccountredis');
               //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
                 console.log(succeeded); // will be true if successful
                 return res.json({success:true, msg:"User: " + result.mobileNumber + " deleted"})
@@ -191,7 +191,7 @@ backofficerouter.get('/deleteuser/:mobileNumber', function (req, res) {
           //userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
           userandaccountredis.del(redisprefixes.user + result._id, function (err, succeeded) {
           userandaccountredis.del(redisprefixes.token + result._id, function (err, succeeded) {
-          var tokenredis = redisClient(6379, 'userandaccountredis');
+          var tokenredis = redisClient(6378, 'userandaccountredis');
           //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
           console.log(succeeded); // will be true if successful
           return res.json({success:true, msg:"User: " + result.mobileNumber + " deleted"})

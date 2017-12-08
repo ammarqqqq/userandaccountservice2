@@ -4,7 +4,7 @@ var redis = null;
 var server = process.env.DNSDOMAIN;
 //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
   //redis = redisClient(serverAddress.port, serverAddress.address);
-  redis = redisClient(6379, 'userandaccountredis');
+  redis = redisClient(6378, 'userandaccountredis');
 //});
 const Useridentification = require('./models/useridentification');
 const logger = require('./logger.js')

@@ -33,5 +33,5 @@ EXPOSE 9003
 ADD ./src /src
 ADD ./package.json /package.json
 RUN npm install
-CMD  ./nodestart.sh
-#CMD /etc/init.d/filebeat start && ./nodestart.sh
+#CMD  ./nodestart.sh
+CMD /etc/init.d/filebeat start && ./nodestart.sh
