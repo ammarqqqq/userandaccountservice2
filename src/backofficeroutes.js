@@ -188,7 +188,7 @@ backofficerouter.get('/deleteuser/:mobileNumber', function (req, res) {
     } else {
       Useridentification.remove({_id: result._id}, (err) => {
         //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
-          //userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
+          userandaccountredis = redisClient(6378, 'userandaccountredis');
           userandaccountredis.del(redisprefixes.user + result._id, function (err, succeeded) {
           userandaccountredis.del(redisprefixes.token + result._id, function (err, succeeded) {
           var tokenredis = redisClient(6378, 'userandaccountredis');
@@ -200,8 +200,8 @@ backofficerouter.get('/deleteuser/:mobileNumber', function (req, res) {
       //})
     });
   }
-});});
-
+});
+});
 /**
  * @api {get} /activateuserwithtoken Activate the user with it's token.
  * @apiVersion 1.0.0
