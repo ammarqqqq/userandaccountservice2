@@ -21,7 +21,7 @@ rabbitMQHandler.getConnection(process.env.RABBITMQ_URL).then(bus =>{
 
         //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
           //var userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
-          var userandaccountredis = redisClient(6379, 'userandaccountredis');
+          var userandaccountredis = redisClient(6378, 'userandaccountredis');
           userandaccountredis.flushdb( function (err, succeeded) {
             if(err){
               console.log("could not flush redis " + err);

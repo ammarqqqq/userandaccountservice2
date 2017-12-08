@@ -30,7 +30,7 @@ process.on('unhandledRejection', (reason, p) => {
 
 
 const app = express();
-const portnr = process.env.NODE_PORT || 8080;
+const portnr = process.env.NODE_PORT || 8039;
 
 app.set('superSecret', config.secret); // secret variable
 

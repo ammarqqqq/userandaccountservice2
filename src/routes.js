@@ -60,7 +60,7 @@ router.get('/getuserbytoken', checkauthentication, function (req, res) {
 
     //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var tokenredis = redisClient(6379, 'userandaccountredis');
+      var tokenredis = redisClient(6378, 'userandaccountredis');
       tokenredis.get(redisprefixes.token + decoded._id.toString(), function(err, reply) {
         if (err || !reply) {
           console.log("Decoding error: ", err);
