@@ -436,7 +436,7 @@ function getLoginAttempt(user) {
     function(resolve , reject) {
       //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
           //var tokenredis = redisClient(serverAddress.port, serverAddress.address);t
-          var  tokenredis = redisClient(6379, 'userandaccountredis');
+          var  tokenredis = redisClient(6378, 'userandaccountredis');
           tokenredis.get(redisprefixes.logintries + user._id.toString(), function(err, reply) {
             resolve(reply);
           })
@@ -455,7 +455,7 @@ function putLoginAttempt(user, prevattempt) {
 
   //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var  tokenredis = redisClient(6379, 'userandaccountredis');
+      var  tokenredis = redisClient(6378, 'userandaccountredis');
       tokenredis.set(redisprefixes.logintries + user._id.toString(), JSON.stringify(attempt), function () {
         return;
       });
