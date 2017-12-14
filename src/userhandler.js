@@ -19,7 +19,7 @@ function resolveRedis() {
     function(resolve , reject) {
       //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
         //redis = redisClient(serverAddress.port, serverAddress.address);
-        redis = redisClient(6378, 'userandaccountredis');
+        redis = redisClient(6379, 'userandaccountredis');
         if (redis) resolve(redis);
         else reject("No redis");
       //});
