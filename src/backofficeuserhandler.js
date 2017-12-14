@@ -1,10 +1,11 @@
 const redisClient = require('redis').createClient;
 
-const serviceLookupHandler = require("./consulLookup.js");
+//const serviceLookupHandler = require("./consulLookup.js");
 var redis = null;
-serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
-  redis = redisClient(serverAddress.port, serverAddress.address);
-});
+//serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+  //redis = redisClient(serverAddress.port, serverAddress.address);
+  redis = redisClient(6378, 'userandaccountredis');
+//});
 
 const User = require('./models/user');
 
