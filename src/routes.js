@@ -711,7 +711,7 @@ router.post('/addcontractaddress', function(req,res){
   var token = getToken(req.headers);
   var decoded = jwt.decode(token, config.secret);
   console.log("decoded: ", decoded._id)
-  console.log("bblockchaincontractaddress to link : ", req.body.blockchainContractAddress)
+  console.log("blockchaincontractaddress to link : ", req.body.blockchainContractAddress)
   accounthandler.addContractAddress(decoded._id, req.body.blockchainContractAddress).then(savedAccount => {
     return res.json({success: true, msg: "Link created", AccountId:savedAccount.id, blockchainContractAddress:savedAccount.blockchainContractAddress, blockchainAccountCredentials:savedAccount.blockchainAccountCredentials})
   }).catch(error => {

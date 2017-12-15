@@ -14,7 +14,7 @@ const userhandler = require('./userhandler.js');
 const historyhandler = require('./historyhandler.js');
 const profilehandler = require('./profilehandler.js');
 const backofficeuserhandler = require('./backofficeuserhandler.js');
-const serviceLookupHandler = require("./consulLookup.js");
+//const serviceLookupHandler = require("./consulLookup.js");
 
 const Account = require('./models/account.js');
 const AccountConfig = require('./models/accountconfig.js');

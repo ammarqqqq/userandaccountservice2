@@ -6,5 +6,5 @@ if [ $NODE_ENV = "production" ]; then
   node /src/start.js
 else
   echo "starting nodemon with debugger"
-  nodemon --inspect=0.0.0.0:9922 -L --watch "/src" /src/start.js
+  nodemon --inspect=0.0.0.0:9003 -L --watch "/src" /src/start.js
 fi

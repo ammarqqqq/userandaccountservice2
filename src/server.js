@@ -12,7 +12,7 @@ const logger = require('./logger.js')
 const morgan = require('morgan');
 var constants = require('constants')
 
-const messageQueue = require('./messageQueue.js').listen();
+//const messageQueue = require('./messageQueue.js').listen();
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 process.on('error', err => {
