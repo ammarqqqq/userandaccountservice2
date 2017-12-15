@@ -132,10 +132,10 @@ backofficerouter.get('/deleteall', function (req, res) {
   logger.info("deleteall" , req.body);
   User.remove({}, (err) => {
     Useridentification.remove({}, (err) => {
-      //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
-        //userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
-          userandaccountredis = redisClient(6378, 'userandaccountredis');
-        userandaccountredis.flushdb( function (err, succeeded) {
+      //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress =>
+        //microservices_userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
+        microservices_userandaccountredis = redisClient(6379, 'microservices_userandaccountredis');
+        microservices_userandaccountredis.flushdb( function (err, succeeded) {
             console.log(succeeded); // will be true if successfull
             return res.json({success: true});
         });
@@ -158,16 +158,15 @@ backofficerouter.post("/deleteuser/:userid", function(req, res) {
       return res.json({success:true, msg:"No user found"})
     } else {
       Useridentification.remove({_id: result._id}, (err) => {
-        //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
-          //userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
-          userandaccountredis.del(redisprefixes.user + result._id, function (err, succeeded) {
-          userandaccountredis.del(redisprefixes.token + result._id, function (err, succeeded) {
-              var tokenredis = redisClient(6378, 'userandaccountredis');
+        //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
+          //microservices_userandaccountredis = redisClient(serverAddress.port, serverAddress.address);
+         microservices_userandaccountredis.del(redisprefixes.token + result._id, function (err, succeeded) {
+              var tokenredis = redisClient(6379, 'microservices_userandaccountredis');
               //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
                 console.log(succeeded); // will be true if successful
                 return res.json({success:true, msg:"User: " + result.mobileNumber + " deleted"})
               });
-          });
+
       //})
       });
     }
@@ -187,16 +186,16 @@ backofficerouter.get('/deleteuser/:mobileNumber', function (req, res) {
       return res.json({success: true});
     } else {
       Useridentification.remove({_id: result._id}, (err) => {
-        //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
-          userandaccountredis = redisClient(6378, 'userandaccountredis');
-          userandaccountredis.del(redisprefixes.user + result._id, function (err, succeeded) {
-          userandaccountredis.del(redisprefixes.token + result._id, function (err, succeeded) {
-          var tokenredis = redisClient(6378, 'userandaccountredis');
+        //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
+          microservices_userandaccountredis = redisClient(6379, 'microservices_userandaccountredis');
+
+          microservices_userandaccountredis.del(redisprefixes.token + result._id, function (err, succeeded) {
+          var tokenredis = redisClient(6379, 'microservices_userandaccountredis');
           //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
           console.log(succeeded); // will be true if successful
           return res.json({success:true, msg:"User: " + result.mobileNumber + " deleted"})
          });
-        });
+
       //})
     });
   }

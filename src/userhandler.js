@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 //const serviceLookupHandler = require("./consulLookup.js");
 const logger = require('./logger.js')
 var redis = null;
-//serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+//serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
 //  redis = redisClient(serverAddress.port, serverAddress.address);
 //});
 
@@ -17,9 +17,9 @@ var redis = null;
 function resolveRedis() {
   return new Promise(
     function(resolve , reject) {
-      //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+      //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
         //redis = redisClient(serverAddress.port, serverAddress.address);
-        redis = redisClient(6379, 'userandaccountredis');
+        redis = redisClient(6379, 'microservices_userandaccountredis');
         if (redis) resolve(redis);
         else reject("No redis");
       //});

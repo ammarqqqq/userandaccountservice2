@@ -58,9 +58,9 @@ router.get('/getuserbytoken', checkauthentication, function (req, res) {
     var decoded = jwt.decode(token, config.secret);
     if (!decoded) throw "Could not decode user";
 
-    //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+    //serviceLookupHandler.serviceLookup("microservices__userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var tokenredis = redisClient(6379, 'userandaccountredis');
+      var tokenredis = redisClient(6379, 'microservices__userandaccountredis');
       tokenredis.get(redisprefixes.token + decoded._id.toString(), function(err, reply) {
         if (err || !reply) {
           console.log("Decoding error: ", err);
@@ -434,9 +434,9 @@ router.post('/createprofile', checkauthentication, function (req, res) {
 function getLoginAttempt(user) {
   return new Promise(
     function(resolve , reject) {
-      //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+      //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
           //var tokenredis = redisClient(serverAddress.port, serverAddress.address);t
-          var  tokenredis = redisClient(6379, 'userandaccountredis');
+          var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
           tokenredis.get(redisprefixes.logintries + user._id.toString(), function(err, reply) {
             resolve(reply);
           })
@@ -453,9 +453,9 @@ function putLoginAttempt(user, prevattempt) {
     time: now
   }
 
-  //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+  //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var  tokenredis = redisClient(6379, 'userandaccountredis');
+      var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
       tokenredis.set(redisprefixes.logintries + user._id.toString(), JSON.stringify(attempt), function () {
         return;
       });
@@ -482,9 +482,9 @@ function isBlocking(attempt, now) {
 }
 
 function clearLoginAttempts(user) {
-  //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+  //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var  tokenredis = redisClient(6379, 'userandaccountredis');
+      var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
       tokenredis.del(redisprefixes.logintries + user._id.toString());
   //})
 }
@@ -525,9 +525,9 @@ router.post('/login', function (req, res) {
                var now = new Date();
                var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
                utc.setMinutes(utc.getMinutes() + config.tokenExpiryMinutes);
-               //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+               //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
                  //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-                 var  tokenredis = redisClient(6379, 'userandaccountredis');
+                 var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
                  tokenredis.set(redisprefixes.token + user._id.toString(), utc.getTime());
                  if (req.body.pushToken) {
                    user.pushToken = req.body.pushToken;
@@ -569,9 +569,9 @@ router.get('/loggedin', function (req, res) {
     if (!token) throw "No token supplied in loggedin";
     var decoded = jwt.decode(token, config.secret);
     if (!decoded) throw "Could not decode user";
-    //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+    //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var  tokenredis = redisClient(6379, 'userandaccountredis');
+      var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
       tokenredis.get(redisprefixes.token + decoded._id.toString(), function(err, reply) {
         if (err || !reply) {
           console.log(err);

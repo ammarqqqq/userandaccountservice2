@@ -125,9 +125,9 @@ var emailhandler = (function() {
           time: now.getTime()
         }
         //TODO: check if there is already a token for the user
-        //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+        //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
           //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-          var tokenredis = redisClient(6378,'userandaccountredis');
+          var tokenredis = redisClient(6379,'microservices_userandaccountredis');
           tokenredis.set(redisprefixes.resetpasswordtoken + token, JSON.stringify(tokenObj), function (err, reply) {
             console.log("SET REDIS: " + reply);
             resolve(reply);
@@ -140,9 +140,9 @@ var emailhandler = (function() {
     console.log("getResetTokenFromRedis "+ token);
     return new Promise(
       function(resolve , reject) {
-        //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
+        //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
           //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-          var tokenredis = redisClient(6378,'userandaccountredis');
+          var tokenredis = redisClient(6379,'microservices_userandaccountredis');
           tokenredis.get(redisprefixes.resetpasswordtoken + token, function(err, reply) {
           console.log("GET REDIS: " + reply);
           if (reply) {
