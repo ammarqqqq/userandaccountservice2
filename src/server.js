@@ -14,7 +14,7 @@ var constants = require('constants')
 
 //const messageQueue = require('./messageQueue.js').listen();
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
+/*
 process.on('error', err => {
   console.log('#338: process error', err)
 })
@@ -26,7 +26,7 @@ process.on('uncaughtException', function (err) {
 process.on('unhandledRejection', (reason, p) => {
   console.log('#338: process unhandled rejection', p, 'reason', reason)
 })
-
+*/
 
 
 const app = express();
