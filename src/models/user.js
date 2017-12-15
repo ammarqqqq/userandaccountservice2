@@ -102,7 +102,7 @@ userSchema.pre('save', function (next) {
 userSchema.post('update', function () {
   //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
     //var redis = redisClient(serverAddress.port, serverAddress.address);
-    var  redis = redisClient(6378, 'userandaccountredis');
+    var  redis = redisClient(6379, 'userandaccountredis');
     redis.set(redisprefixes.user + this._id.toString(), JSON.stringify(this), function () {
     });
   //});
