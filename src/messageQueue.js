@@ -2,7 +2,7 @@ const rabbitMQHandler = require('./rabbitmqhandler.js')
 const User = require("./models/user")
 const Useridentification = require('./models/useridentification');
 
-const serviceLookupHandler = require("./consulLookup.js");
+//const serviceLookupHandler = require("./consulLookup.js");
 const logger = require('./logger.js')
 const redisClient = require('redis').createClient;
 module.exports.listen = function(){

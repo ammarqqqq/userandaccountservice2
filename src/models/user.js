@@ -102,7 +102,7 @@ userSchema.pre('save', function (next) {
 userSchema.post('update', function () {
   //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
     //var redis = redisClient(serverAddress.port, serverAddress.address);
-    var  redis = redisClient(6379, 'userandaccountredis');
+    var  redis = redisClient(6379, 'microservices_userandaccountredis');
     redis.set(redisprefixes.user + this._id.toString(), JSON.stringify(this), function () {
     });
   //});
@@ -117,7 +117,7 @@ userSchema.post('update', function () {
 userSchema.post('save', function () {
   //serviceLookupHandler.serviceLookup("userandaccountredis", '').then(serverAddress => {
     //var redis = redisClient(serverAddress.port, serverAddress.address);
-    var  redis = redisClient(6379, 'userandaccountredis');
+    var  redis = redisClient(6379, 'microservices_userandaccountredis');
     redis.set(redisprefixes.user + this._id.toString(), JSON.stringify(this), function () {
     });
   //});

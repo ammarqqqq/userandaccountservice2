@@ -20,7 +20,7 @@ var accountSchema = new Schema({
 if(process.env.NODE_ENV === 'user_test'){
   rollbackConfig = {
     index: true,
-    conn: 'mongodb://localhost:27017/user_integration_test',
+    conn: 'mongodb://microservices_usermongo:27017/user_integration_test',
     collectionName: 'accounts'
   };
 } else {
