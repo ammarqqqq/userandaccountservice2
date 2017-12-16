@@ -18,7 +18,8 @@ module.exports = function(){
             return {
               'secret': '04050405',
               //'database': 'mongodb://admin:test@securemongo:27017/user',
-              'database': 'mongodb://microservices_usermongo:27016/user',
+              //'database': 'mongodb://microservices_usermongo:27017/user',
+              'database': 'mongodb://microservices_usermongo:27017/user',
               'logsDirectory': 'logs',
               'serviceName': 'microservices_userandaccountservice',
               'tokenExpiryMinutes' : 1,
