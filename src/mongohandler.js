@@ -8,7 +8,7 @@ module.exports.listen = function(url){
 
   //serviceLookupHandler.serviceLookup("userandaccountmongodb", '').then(serverAddress => {
     //var url = config.database;
-    var url = "http://" +  server  +  "/user";
+    var url = "mongodb://" +  server  +  "/user";
     try {
       //mongoose.connect(url);
       mongoose.connect(url, { useMongoClient: true });
