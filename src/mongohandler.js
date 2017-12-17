@@ -10,7 +10,8 @@ module.exports.listen = function(url){
     //var url = config.database;
     var url = "http://" +  server  +  ":27017/user";
     try {
-      mongoose.connect(url);
+      //mongoose.connect(url);
+      mongoose.connect(url, { useMongoClient: true });
       console.log("Connected to " + url)
     } catch(error) {
       console.log("Could not connect to " + url + ". " + error);
