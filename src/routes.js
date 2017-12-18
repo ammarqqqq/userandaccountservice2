@@ -60,7 +60,7 @@ router.get('/getuserbytoken', checkauthentication, function (req, res) {
 
     //serviceLookupHandler.serviceLookup("microservices__userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var tokenredis = redisClient(6379, 'microservices_userandaccountredis');
+      var tokenredis = redisClient(6374, 'microservices_userandaccountredis');
       tokenredis.get(redisprefixes.token + decoded._id.toString(), function(err, reply) {
         if (err || !reply) {
           console.log("Decoding error: ", err);
@@ -436,7 +436,7 @@ function getLoginAttempt(user) {
     function(resolve , reject) {
       //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
           //var tokenredis = redisClient(serverAddress.port, serverAddress.address);t
-          var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
+          var  tokenredis = redisClient(6374, 'microservices_userandaccountredis');
           tokenredis.get(redisprefixes.logintries + user._id.toString(), function(err, reply) {
             resolve(reply);
           })
@@ -455,7 +455,7 @@ function putLoginAttempt(user, prevattempt) {
 
   //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
+      var  tokenredis = redisClient(6374, 'microservices_userandaccountredis');
       tokenredis.set(redisprefixes.logintries + user._id.toString(), JSON.stringify(attempt), function () {
         return;
       });
@@ -484,7 +484,7 @@ function isBlocking(attempt, now) {
 function clearLoginAttempts(user) {
   //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
+      var  tokenredis = redisClient(6374, 'microservices_userandaccountredis');
       tokenredis.del(redisprefixes.logintries + user._id.toString());
   //})
 }
@@ -527,7 +527,7 @@ router.post('/login', function (req, res) {
                utc.setMinutes(utc.getMinutes() + config.tokenExpiryMinutes);
                //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
                  //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-                 var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
+                 var  tokenredis = redisClient(6374, 'microservices_userandaccountredis');
                  tokenredis.set(redisprefixes.token + user._id.toString(), utc.getTime());
                  if (req.body.pushToken) {
                    user.pushToken = req.body.pushToken;
@@ -571,7 +571,7 @@ router.get('/loggedin', function (req, res) {
     if (!decoded) throw "Could not decode user";
     //serviceLookupHandler.serviceLookup("microservices_userandaccountredis", '').then(serverAddress => {
       //var tokenredis = redisClient(serverAddress.port, serverAddress.address);
-      var  tokenredis = redisClient(6379, 'microservices_userandaccountredis');
+      var  tokenredis = redisClient(6374, 'microservices_userandaccountredis');
       tokenredis.get(redisprefixes.token + decoded._id.toString(), function(err, reply) {
         if (err || !reply) {
           console.log(err);
