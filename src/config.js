@@ -3,7 +3,7 @@ module.exports = function(){
         case 'test':
             return {
               'secret': '04050405',
-              'database': 'mongodb://localhost:27017/user_integration_test',
+              'database': 'mongodb://localhost:27016/user_integration_test',
               'logsDirectory': 'logs',
               'serviceName': 'microservices_userandaccountservice',
               'tokenExpiryMinutes' : 10,
@@ -19,7 +19,7 @@ module.exports = function(){
               'secret': '04050405',
               //'database': 'mongodb://admin:test@securemongo:27017/user',
               //'database': 'mongodb://microservices_usermongo:27017/user',
-              'database': 'mongodb://microservices_usermongo:27017/user',
+              'database': 'mongodb://microservices_usermongo:27016/user',
               'logsDirectory': 'logs',
               'serviceName': 'microservices_userandaccountservice',
               'tokenExpiryMinutes' : 1,

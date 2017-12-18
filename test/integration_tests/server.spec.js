@@ -24,7 +24,7 @@ let redisprefixes = require("../../src/redisprefixes.js")
 const Config = require("../../src/config.js")
   config = new Config();
 
-let redis = require("fakeredis").createClient(6379, '127.0.0.1');
+let redis = require("fakeredis").createClient(6374, '127.0.0.1');
 sinon.stub(require('redis'), 'createClient').returns(redis);
 
 sinon.stub(require('../../src/smshandler.js'), 'sendSmsNew').returns(

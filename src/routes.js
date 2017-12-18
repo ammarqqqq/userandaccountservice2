@@ -662,6 +662,7 @@ function checkauthentication(req, res, next) {
          logger.error(error);
          return next(error);
        } else {
+         console.log("JSON Body " + body);
          var jsonObject = JSON.parse(body);
          if (jsonObject.success) {
            console.log("Here we have jsonObject in checkauth ", jsonObject)
