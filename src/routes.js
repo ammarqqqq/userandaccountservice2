@@ -646,7 +646,7 @@ function checkauthentication(req, res, next) {
  //serviceLookupHandler.serviceLookup("authenticationservice-8080", 'authenticated').then(serverAddress => {
    var server = process.env.DNSDOMAIN;
    request({
-       url: 'https://' + server + '/authenticated', //URL to hit
+       url: 'https://' + server + ':8040/authenticated', //URL to hit
        //url: "https://"+ serverAddress.address + ":" + serverAddress.port + "/" + serverAddress.routePath , //URL to hit
        qs: {time: +new Date()}, //Query string data
        method: 'GET',
@@ -659,10 +659,11 @@ function checkauthentication(req, res, next) {
        cert: fs.readFileSync('/certs/chain.crt')
    }, function(error, response, body){
        if(error) {
+         logger.info(body);
          logger.error(error);
          return next(error);
        } else {
-         console.log("JSON Body " + body);
+         logger.info(body);
          var jsonObject = JSON.parse(body);
          if (jsonObject.success) {
            console.log("Here we have jsonObject in checkauth ", jsonObject)
